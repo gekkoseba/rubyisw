@@ -1,0 +1,25 @@
+<p>
+  <button type="button" class="btn btn-primary"><strong>Nombre:</strong>
+ <%= @ticket.name %> </button>
+</p>
+
+<p>
+   <button type="button" class="btn btn-primary"><strong>Descripcion:</strong>
+  <%= @ticket.description%></button>
+</p>
+
+<p>
+   <button type="button" class="btn btn-primary"> <strong>Creador</strong>
+  <%=Operator.find(@ticket.operator_id).name%></button>
+</p>
+
+<p>
+  <button type="button" class="btn btn-primary"> <strong>A cargo</strong>
+    <%=@ticket.owner%></button>
+</p>
+
+<p>
+  <button type="button" class="btn btn-primary"><strong>Estado:</strong>
+    <%= @ticket.status%></button>
+</p>
+

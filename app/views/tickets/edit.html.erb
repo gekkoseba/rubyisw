@@ -1,0 +1,7 @@
+<%if current_operator.role == "Supervisor" %>
+  <h1>Editar Ticket</h1>
+
+  <%= render 'form' %>
+
+  <%= link_to 'Lista Ticket', tickets_path %>
+<%end%>

@@ -1,0 +1,33 @@
+<%= bootstrap_form_for(@ticket) do |f| %>
+
+      <%= f.text_field :name, class:"form-control", label:"Nombre"%>
+      <%= f.text_area :description, class:"form-control", label:"Descripcion" %>
+      <% if @ticket.new_record? %>
+        <%= f.hidden_field :operator_id, :value => current_operator.id, :readonly => true%>
+      <%end%>
+      <%= f.select :status, ["Abierto", "Cerrado"],autofocus: true, label: "Estado ticket" %>
+
+      <%= f.check_box :delayed, label: "Aplazado" %>
+
+    <div id="delay_time" style="display:none;">
+      <%= f.date_select :delay_time, :order => [:day, :month, :year], label: "Aplazar hasta" %>
+    </div>
+
+    <% if current_operator.role == 'Supervisor' %>
+       <%= f.collection_select :owner, Operator.all, :name, :name, label:"A cargo "%>
+	<% end %>
+
+      <%= f.submit "Crear" %>
+<% end %>
+
+<script type="text/javascript">
+    var checkbox = document.getElementById('ticket_delayed');
+    var details_div = document.getElementById('delay_time');
+    checkbox.onchange = function() {
+        if(this.checked) {
+            details_div.style['display'] = 'block';
+        } else {
+            details_div.style['display'] = 'none';
+        }
+    };
+</script>
